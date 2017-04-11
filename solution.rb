@@ -66,7 +66,19 @@ word_pairs = []
 
 words.each do |combinations|
   next if combinations.first.empty? || combinations.last.empty?
-    word_pairs << combinations.first.product(combinations.last)
+  combinations.first.product(combinations.last) do |c|
+    word_pairs << c
+  end
 end
 
 puts word_pairs.inspect
+
+full_length_words = keys.shift.product(*keys).map(&:join) & dictionary[10]
+
+word_pairs.each do |pair|
+  if full_length_words.include?(pair.join(""))
+    word_pairs.delete(pair)
+  end
+end
+
+puts word_pairs.concat(full_length_words).inspect
