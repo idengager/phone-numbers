@@ -2,14 +2,14 @@ module NumberToWords
   MAPPINGS = [
     nil,
     nil,
-    %w(A B C),
-    %w(D E F),
-    %w(G H I),
-    %w(J K L),
-    %w(M N O),
-    %w(P Q R S),
-    %w(T U V),
-    %w(W X Y Z)
+    %w(a b c),
+    %w(d e f),
+    %w(g h i),
+    %w(j k l),
+    %w(m n o),
+    %w(p q r s),
+    %w(t u v),
+    %w(w x y z)
   ]
 
   def self.perform(number)
@@ -25,7 +25,7 @@ module NumberToWords
       file.each_line do |line|
         length = line.strip.length
         if length <= 10
-          dictionary[length] << line.strip
+          dictionary[length] << line.strip.downcase
         end
       end
     end
