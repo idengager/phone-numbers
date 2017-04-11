@@ -37,13 +37,29 @@ end
 keys = map_to_letters(6686787825)
 puts keys.inspect
 
+words = []
+
 for i in (2..7)
   first_word_mappings = keys[0..i]
+  next if first_word_mappings.size < 3
+
   second_word_mappings = keys[(i + 1)..9]
+  next if second_word_mappings.size < 3
 
   first_word_combinations = first_word_mappings.shift.product(*first_word_mappings).map(&:join)
   second_word_combinations = second_word_mappings.shift.product(*second_word_mappings).map(&:join)
 
-  puts first_word_mappings.take(10).inspect
-  puts second_word_mappings.take(10).inspect
+  puts first_word_combinations.take(5)
+  puts "+++"
+  puts second_word_combinations.take(5)
+  puts "_____"
+  puts dictionary[i+1].take(5)
+  puts dictionary[9 - i + 1].take(5)
+
+  words << [
+    (first_word_combinations & dictionary[i + 1]),
+    (second_word_combinations & dictionary[10 - (i + 1)])
+  ]
 end
+
+puts words.inspect
