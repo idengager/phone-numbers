@@ -34,4 +34,16 @@ def map_to_letters(number)
   number.to_s.chars.map{ |digit| MAPPINGS[digit.to_i] }
 end
 
-puts map_to_letters(6686787825).inspect
+keys = map_to_letters(6686787825)
+puts keys.inspect
+
+for i in (2..7)
+  first_word_mappings = keys[0..i]
+  second_word_mappings = keys[(i + 1)..9]
+
+  first_word_combinations = first_word_mappings.shift.product(*first_word_mappings).map(&:join)
+  second_word_combinations = second_word_mappings.shift.product(*second_word_mappings).map(&:join)
+
+  puts first_word_mappings.take(10).inspect
+  puts second_word_mappings.take(10).inspect
+end
