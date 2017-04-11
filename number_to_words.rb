@@ -68,6 +68,3 @@ module NumberToWords
     word_pairs.concat(full_length_words)
   end
 end
-
-puts NumberToWords.perform(6686787825)
-puts NumberToWords.perform(2282668687)
