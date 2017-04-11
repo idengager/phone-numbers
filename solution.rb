@@ -52,9 +52,7 @@ for i in (2..7)
   puts first_word_combinations.take(5)
   puts "+++"
   puts second_word_combinations.take(5)
-  puts "_____"
-  puts dictionary[i+1].take(5)
-  puts dictionary[9 - i + 1].take(5)
+  puts "____"
 
   words << [
     (first_word_combinations & dictionary[i + 1]),
@@ -63,3 +61,12 @@ for i in (2..7)
 end
 
 puts words.inspect
+
+word_pairs = []
+
+words.each do |combinations|
+  next if combinations.first.empty? || combinations.last.empty?
+    word_pairs << combinations.first.product(combinations.last)
+end
+
+puts word_pairs.inspect
