@@ -1,23 +1,28 @@
-require 'trie'
-
 MAPPINGS = [
   nil,
   nil,
-  %w(a b c),
-  %w(d e f),
-  %w(g h i),
-  %w(j k l),
-  %w(m n o),
-  %w(p q r s),
-  %w(t u v),
-  %w(w x y z)
+  %w(A B C),
+  %w(D E F),
+  %w(G H I),
+  %w(J K L),
+  %w(M N O),
+  %w(P Q R S),
+  %w(T U V),
+  %w(W X Y Z)
 ]
 
-trie = Trie.new
+dictionary = {}
+
+for i in (1..10)
+  dictionary[i] = []
+end
 
 File.open("./dictionary.txt", "r") do |file|
   file.each_line do |line|
-    trie.add(line.strip)
+    length = line.strip.length
+    if length <= 10
+      dictionary[length] << line.strip
+    end
   end
 end
 
@@ -26,16 +31,7 @@ puts "done"
 public
 
 def map_to_letters(number)
-  letter_array = []
-
-  return if number.to_s.length < 3
-
-  number.to_s.split('').each do |int|
-    letter_array << MAPPINGS[int.to_i]
-  end
-
-  return letter_array.inspect
+  number.to_s.chars.map{ |digit| MAPPINGS[digit.to_i] }
 end
 
-puts map_to_letters(8)
-puts map_to_letters(66867)
+puts map_to_letters(6686787825).inspect
